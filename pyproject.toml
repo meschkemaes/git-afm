@@ -1,0 +1,68 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "git-afm"
+version = "0.1.0"
+description = "On-device Conventional Commits and PR descriptions, powered by Apple Foundation Models"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [
+    { name = "Lucas Meschke" },
+]
+keywords = [
+    "git",
+    "conventional-commits",
+    "apple-intelligence",
+    "apple-silicon",
+    "foundation-models",
+    "mcp",
+    "cli",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: MacOS",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Version Control :: Git",
+]
+dependencies = [
+    "apple-fm-sdk>=0.2.0",
+    "rich>=13.0.0",
+]
+
+[project.optional-dependencies]
+mcp = [
+    "mcp>=1.0.0",
+]
+dev = [
+    "pytest>=7.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/meschkemaes/git-afm"
+Repository = "https://github.com/meschkemaes/git-afm"
+Issues = "https://github.com/meschkemaes/git-afm/issues"
+
+[project.scripts]
+git-afm = "git_afm.cli:main"
+git-afm-pr = "git_afm.cli:pr_main"
+afm-mcp = "git_afm.mcp_server:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["git_afm*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "integration: requires on-device Apple Foundation Models",
+]
