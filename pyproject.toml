@@ -57,11 +57,9 @@ git-afm = "git_afm.cli:main"
 git-afm-pr = "git_afm.cli:pr_main"
 afm-mcp = "git_afm.mcp_server:main"
 
-[tool.setuptools]
-packages = ["git_afm"]
-
-[tool.setuptools.package-dir]
-git_afm = "."
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["git_afm*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
